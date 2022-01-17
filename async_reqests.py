@@ -27,38 +27,7 @@ if str(sys.argv[1])[-1] != '/':
     url = str(sys.argv[1])+str('/')+'{}'
 else:
     url = str(sys.argv[1])+'{}'
-'''
-# checking Connection
-print(f"[+] Target Website Set To {url.replace('{}','')}")
-s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-try:
-    global HOST, PORT
-    if 'https://' in sys.argv[1]:
-        HOST = socket.gethostbyname(str(sys.argv[1].replace('https://',"")).replace('/',""))
-        PORT = 80
-    elif 'http://' in sys.argv[1]:
-        HOST = socket.gethostbyname(str(sys.argv[1].replace('http://',"")).replace('/',""))
-        PORT = 80 
-except socket.gaierror:
-    print("DNS cound not be resolved")
-    s.close()
-    sys.exit()
-except socket.error:
-    print("cannot connect to host")
-    s.close()
-    sys.exit()
-    
-print("[+] Checking Target Connection")
-r = s.connect_ex((str(HOST),PORT))
-if r == 0:
-   print("[+] Target Is Available")
-   s.close()
-else:
-    print(f"[-] Unable to Connect {sys.argv[1]}")
-    print("Please check Connection And Try Again")
-    sys.exit()
 
-s.close()'''
 # checking wordlist
 print(f"[+] Opening Directory List From {sys.argv[2]}")
 
@@ -131,20 +100,3 @@ except:
     sys.exit()
 
 print('\ntook',time.time()-start)
-
-
-
-               
-#async def get_dir():
-#    async with aiohttp.ClientSession() as session:
-#        for directory in directories:
-#            print(f"trying --> {directory}",end='\r',flush=True)
-#            result = await session.get(url.format(directory),ssl=False)
-#            if result.status == 200:
-#                print(f"{directory} present")
-        
-# event loop
-#loop = asyncio.get_event_loop()
-#loop.run_until_complete(get_dir())
-#loop.close()
-# same as running asyncio.run()
